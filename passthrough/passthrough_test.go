@@ -549,10 +549,30 @@ $$a^*=x-b^*$$
 	c.Assert(actual, qt.Equals, expected)
 }
 
+func TestExample29(t *testing.T) {
+  input := `Block equation with a line-leading equals sign:
+
+$$
+P
+=
+Q
+$$`
+  expected := `<p>Block equation with a line-leading equals sign:</p>
+$$
+P
+=
+Q
+$$`
+	actual := Parse(t, input)
+
+	c := qt.New(t)
+	c.Assert(actual, qt.Equals, expected)
+}
+
 func BenchmarkWithAndWithoutPassthrough(b *testing.B) {
 	const input = `
 ## Block
-	
+
 $$
 a^*=x-b^*
 $$
